@@ -9,11 +9,11 @@ import (
 )
 
 const (
-	FIFO          int = 1
-	LIFO          int = 2
-	PriorityQueue int = 3
-	TimeBased     int = 4
-	TokenBased    int = 5
+	FIFO = iota + 1
+	LIFO
+	PriorityQueue
+	TimeBased
+	TokenBased
 )
 
 var JobList chan Task

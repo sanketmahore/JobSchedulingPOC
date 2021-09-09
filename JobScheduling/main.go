@@ -1,11 +1,17 @@
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
 func main() {
-	jobs := Jobs{{Name: "3", ArrivalTime: 2, Priority: 1},
-		{Name: "2", ArrivalTime: 1, Priority: 2},
-		{Name: "1", ArrivalTime: 0, Priority: 3},
-		{Name: "4", ArrivalTime: 3, Priority: 4},
-		{Name: "5", ArrivalTime: 4, Priority: 5},
-		{Name: "6", ArrivalTime: 5, Priority: 6}}
-	jobs.ScheduleUsing(FIFO, 1)
+	jobs := Jobs{}
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	for i := 0; i < 50; i++ {
+		jobs = append(jobs, Task{Name: fmt.Sprintf("%d", i), ArrivalTime: float64(r1.Intn(100)), Priority: r1.Intn(100)})
+	}
+	jobs.ScheduleUsing(LIFO, 1)
 }
